@@ -3,6 +3,7 @@ package house
 const testVersion = 1
 
 var rhymes = []string{
+	" the house that Jack built.",
 	" the malt\nthat lay in",
 	" the rat\nthat ate",
 	" the cat\nthat killed",
@@ -18,21 +19,22 @@ var rhymes = []string{
 
 func Song() string {
 	var result string
-	for i := 0; i <= len(rhymes); i++ {
+	rhymeLen := len(rhymes)
+	for i := 0; i < rhymeLen; i++ {
 		result += Verse(i + 1)
-		if i < len(rhymes) {
+		if i == rhymeLen-1 {
 			result += "\n\n"
 		}
 	}
 	return result
 }
 func Verse(n int) string {
-	return "This is" + Rhyme(n) + " the house that Jack built."
+	return "This is" + Rhyme(n)
 }
 
 func Rhyme(n int) string {
-	if n == 1 {
+	if n == 0 {
 		return ""
 	}
-	return rhymes[n-2] + Rhyme(n-1)
+	return rhymes[n-1] + Rhyme(n-1)
 }
